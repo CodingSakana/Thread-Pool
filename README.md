@@ -7,12 +7,12 @@ Supports submitting tasks to be executed by a fixed number of worker threads.
 
 ## ✨ Features
 
-- [v] Fixed-size thread pool
-- [v] Asynchronous task submission
-- [v] Safe multithreaded task queue
-- [v] Graceful shutdown on destruction
-- [x] (Coming soon) Return value support with `std::future`
-- [x] (Planned) Priority task scheduling
+- [x] Fixed-size thread pool
+- [x] Asynchronous task submission
+- [x] Safe multithreaded task queue
+- [x] Graceful shutdown on destruction
+- [ ] (Coming soon) Return value support with `std::future`
+- [ ] (Planned) Priority task scheduling
 
 ---
 
