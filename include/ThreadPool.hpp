@@ -10,7 +10,7 @@
 
 class ThreadPool{
 private:
-    std::vector<std::thread> wokers;            // 工作线程列表
+    std::vector<std::thread> workers;            // 工作线程列表
     std::queue<std::function<void()>> tasks;    // 任务队列
     std::mutex queueMutex;
     std::condition_variable condition;
