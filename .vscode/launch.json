@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug ThreadPool",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/test/test-May17th2025",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "启用 pretty-printing",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build ThreadPool", 
+            "miDebuggerPath": "/usr/bin/gdb"
+        }
+    ]
+}

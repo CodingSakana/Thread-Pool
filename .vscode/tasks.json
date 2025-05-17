@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build ThreadPool",
+            "type": "shell",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-Wall",
+                "-g",
+                "-O0",
+                "src/ThreadPool.cpp",
+                "test/main.cpp",
+                "-Iinclude",
+                "-o",
+                "test/test-May17th2025"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build the ThreadPool project manually"
+        }
+    ]
+}
