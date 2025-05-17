@@ -57,6 +57,7 @@
         "istream": "cpp",
         "span": "cpp",
         "sstream": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "future": "cpp"
     }
 }

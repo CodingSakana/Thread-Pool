@@ -1,6 +1,6 @@
 # ThreadPool
 
-A simple C++11 thread pool implementation from scratch.  
+A simple C++20 thread pool implementation from scratch.  
 Supports submitting tasks to be executed by a fixed number of worker threads.
 
 ---
@@ -37,8 +37,8 @@ Supports submitting tasks to be executed by a fixed number of worker threads.
 ### Compile manually (Linux / g++):
 
 ```bash
-g++ src/ThreadPool.cpp test/main.cpp -Iinclude -o test/test-threadpool -Wall -O2
-./test/test-threadpool
+g++ -std=c++20 -O3 -Wall -pthread src/ThreadPool.cpp test/v1.5-test.cpp -Iinclude -o test/v1.5-test
+./test/v1.5-test
 ```
 Or use VS Code + tasks.json to build.
 
@@ -71,7 +71,7 @@ for (int i = 0; i < 8; ++i) {
 ## 🧠 Why I Built This
 
 This project is written to fully understand thread pool internals
-and gain confidence in multithreaded system design with C++11+.
+and gain confidence in multithreaded system design with C++20.
 
 ---
 ## 🧑‍💻 Author
