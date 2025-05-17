@@ -17,15 +17,7 @@ ThreadPool::~ThreadPool(){
         if (worker.joinable())
             worker.join();
     }
-}
-
-void ThreadPool::enqueue(std::function<void()> task){
-    {
-        std::unique_lock<std::mutex> lock(queueMutex);
-        if(stop) return;
-        tasks.push(std::move(task));
-    }
-    condition.notify_one();
+    std::cout << "[ThreadPool] All worker threads joined. Pool destroyed.\n";
 }
 
 void ThreadPool::workerLoop() {
