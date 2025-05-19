@@ -50,7 +50,7 @@ Or use VS Code + tasks.json to build.
 
 ---
 
-## 🧪 Example Usage
+## 📦 Example Usage
 
 ```c++
 ThreadPool pool(4); // 创建4线程的线程池
@@ -85,8 +85,6 @@ return 0;
 ---
 ## 📌 Future Work
 
-- Support enqueue() with return values using std::future
-
 - Support variable-size dynamic thread pools
 
 - Task prioritization with std::priority_queue
@@ -100,5 +98,5 @@ just practicing C++20 skill.
 
 ---
 ## 🧑‍💻 Author
-Made by SSSakana.  
-Updated on May 17, 2025.
+Created by [@sssakana](https://github.com/CodingSakana)  
+Written on May 17, 2025.
