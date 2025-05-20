@@ -2,7 +2,7 @@
 
 ---
 
-## ❓ 问题背景
+## 问题背景
 
 在实现线程池的 `enqueue()` 函数中，使用了 C++20 的参数包初始化捕获：
 
@@ -20,7 +20,7 @@ error: no matching function for call to ‘forward<const char(&)[5]>(const char*
 
 ---
 
-## 🧠 问题本质
+## 问题本质
 
 1. `"task"` 是数组 `const char[5]`
 2. 在 `enqueue()` 内部通过 `std::forward<Args>(args)` 捕获时，`Args = const char(&)[5]`，**合法**
@@ -29,7 +29,7 @@ error: no matching function for call to ‘forward<const char(&)[5]>(const char*
 
 ---
 
-## ✅ 正确写法
+## 正确写法
 
 ```cpp
 [f = std::forward<F>(f), ... params = std::forward<Args>(args)]() mutable {
@@ -39,23 +39,23 @@ error: no matching function for call to ‘forward<const char(&)[5]>(const char*
 
 ---
 
-## 🔁 辅助类比
+## 辅助类比
 
 ```cpp
 template<typename T>
 void foo(T&& x) {
-    auto y = std::forward<T>(x);  // ✅ 第一次 forward
+    auto y = std::forward<T>(x);  // 第一次 forward
 
     auto lambda = [y]() {
-        // std::forward<T>(y);    ❌ 错！T = 原类型，但 y 已退化
-        use(y);                   // ✅ 正确写法
+        // std::forward<T>(y);    // 错！T = 原类型，但 y 已退化
+        use(y);                   // 正确写法
     };
 }
 ```
 
 ---
 
-## ✅ 结论：何时使用 std::forward？
+## 结论：何时使用 std::forward？
 
 | 场景           | 是否需要 forward           | 原因说明                            |
 |----------------|----------------------------|-------------------------------------|
@@ -65,13 +65,13 @@ void foo(T&& x) {
 
 ---
 
-## 🧠 记忆口诀
+## 记忆点
 
 > **“forward 一次足够，捕获之后别 forward。”**
 
 ---
 
-## 📌 附录：报错信息参考
+## 报错信息参考
 
 ```text
 error: no matching function for call to ‘forward<const char(&)[5]>(const char*&)’

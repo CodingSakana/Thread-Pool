@@ -99,4 +99,4 @@ just practicing C++20 skill.
 ---
 ## 🧑‍💻 Author
 Created by [@sssakana](https://github.com/CodingSakana)  
-Written on May 17, 2025.
+Written on May 17 2025.
