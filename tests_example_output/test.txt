@@ -1,0 +1,14 @@
+[100%] Built target threadpool_full_test
+[PASS] basic return value
+[ThreadPool] All worker threads joined. Pool destroyed.
+[PASS] parallel sum
+[ThreadPool] All worker threads joined. Pool destroyed.
+[PASS] exception propagation
+[ThreadPool] All worker threads joined. Pool destroyed.
+[PASS] capture semantics
+[ThreadPool] All worker threads joined. Pool destroyed.
+[ThreadPool] All worker threads joined. Pool destroyed.
+[PASS] destructor waits
+[PASS] zero-thread construction
+All functional ThreadPool tests passed!
+[100%] Built target test

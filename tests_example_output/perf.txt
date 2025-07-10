@@ -1,0 +1,40 @@
+[100%] Built target performance_test
+Hardware threads: 16
+
+===== Tasks: 1000 =====
+Data size per task: 100000
+
+--- Without thread pool ---
+Total time (ms): 47
+
+--- With ThreadPool ---
+Total time (ms): 15
+
+[ThreadPool] All worker threads joined. Pool destroyed.
+*** Speedup factor: 3.13333x ***
+
+===== Tasks: 10000 =====
+Data size per task: 100000
+
+--- Without thread pool ---
+Total time (ms): 439
+
+--- With ThreadPool ---
+Total time (ms): 146
+
+[ThreadPool] All worker threads joined. Pool destroyed.
+*** Speedup factor: 3.00685x ***
+
+===== Tasks: 100000 =====
+Data size per task: 100000
+
+--- Without thread pool ---
+Total time (ms): 4570
+
+--- With ThreadPool ---
+Total time (ms): 1457
+
+[ThreadPool] All worker threads joined. Pool destroyed.
+*** Speedup factor: 3.13658x ***
+
+[100%] Built target perf
