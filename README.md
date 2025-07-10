@@ -309,5 +309,7 @@ Total time (ms): 1457
 
 Contributions, issues, and feature requests are welcome. Feel free to submit a PR or open an issue.
 
+---
+
 **Enjoy efficient concurrency! 🚀**
 
