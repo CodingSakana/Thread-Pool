@@ -12,11 +12,13 @@
 | **enqueue**        | 提交任意可调用对象与参数，返回 `std::future` 获取结果。 |
 | **workerLoop**     | 工作线程主循环，阻塞等待任务并执行。                    |
 
-> **目标**：
-> 减少短任务场景下的线程管理开销；
-> 提高并发吞吐量与资源利用率；
-> 提供简洁安全的异步接口。 
-> 短任务场景下相比不使用 **ThreadPool** 获得约 **3x** 的吞吐提升。  
+---
+
+ **目标**：
+ - 减少短任务场景下的线程管理开销；  
+ - 提高并发吞吐量与资源利用率；  
+ - 提供简洁安全的异步接口。   
+ - 短任务场景下相比不使用 **ThreadPool** 获得约 **3x** 的吞吐提升。  
 
 ---
 
@@ -173,12 +175,13 @@ A ThreadPool designed for **high-frequency task** scenarios in C++20, featuring:
 | **enqueue**  | Submits any callable with arguments, returns a `std::future` for result retrieval.       |
 | **workerLoop** | Worker thread main loop: waits for tasks and executes them.                                  |
 
-> **Goals:**
-> - Minimize thread management overhead for short-lived tasks.
-> - Maximize concurrency throughput and resource utilization.
-> - Provide a simple, safe asynchronous interface.
->
-> **Benchmarks** show ~**3×** throughput improvement over spawning threads per task in short-task workloads.
+--- 
+
+**Goals:**
+ - Minimize thread management overhead for short-lived tasks.
+ - Maximize concurrency throughput and resource utilization.
+ - Provide a simple, safe asynchronous interface.
+ - **Benchmarks** show ~**3×** throughput improvement over spawning threads per task in short-task workloads.
 
 ---
 
