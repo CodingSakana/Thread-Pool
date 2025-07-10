@@ -1,21 +1,22 @@
 #include "ThreadPool.hpp"
 
-ThreadPool::ThreadPool(size_t threadNums): stop(false){ // 负责创建线程
-    for(size_t i = 0; i < threadNums; ++i){
-        workers.emplace_back([this](){this->workerLoop();});
+ThreadPool::ThreadPool(size_t threadNums) : stop(false) { // 负责创建线程
+    if (threadNums == 0) throw std::invalid_argument("ThreadPool size cannot be 0");
+    for (size_t i = 0; i < threadNums; ++i) {
+        workers.emplace_back([this]() { this->workerLoop(); });
     }
 }
 
-ThreadPool::~ThreadPool(){
+ThreadPool::~ThreadPool() {
     {
         std::unique_lock<std::mutex> lock(queueMutex);
-        stop = true;
+        stop.store(true, std::memory_order_release);
     }
+    
     condition.notify_all();
 
-    for (std::thread &worker : workers) {
-        if (worker.joinable())
-            worker.join();
+    for (std::thread& worker : workers) {
+        if (worker.joinable()) worker.join();
     }
     std::cout << "[ThreadPool] All worker threads joined. Pool destroyed.\n";
 }
@@ -26,7 +27,9 @@ void ThreadPool::workerLoop() {
 
         {
             std::unique_lock<std::mutex> lock(queueMutex);
-            condition.wait(lock, [this]() { return stop || !tasks.empty(); });  // 后面的表达式为ture时，停止等待.
+            condition.wait(lock, [this]() {
+                return stop.load(std::memory_order_acquire) || !tasks.empty();
+            }); // 后面的表达式为ture时，停止等待.
             /*
             相当于这个：
             while (tasks.empty() && !stop) {
@@ -39,29 +42,10 @@ void ThreadPool::workerLoop() {
             tasks.pop();
         }
 
-        task();
-    }
-}
-
-/*
-void ThreadPool::workerLoop(){
-    std::unique_lock<std::mutex> lock(queueMutex);
-    while(true){
-        condition.wait(lock, [this](){return !tasks.empty() || stop;}); // 后面的表达式为ture时，停止等待。
-        ------
-        相当于这个：
-        while (tasks.empty() && !stop) {
-        condition.wait(lock);
-        }
-        ------
-        if (stop && tasks.empty()) return;
-        if(!tasks.empty()){
-            auto task = tasks.front();
-            tasks.pop();
-            lock.unlock();
+        try {
             task();
+        } catch (const std::exception& e) {
+            std::cerr << e.what() << '\n';
         }
-        lock.lock();
     }
 }
-*/
